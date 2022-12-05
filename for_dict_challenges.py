@@ -104,7 +104,7 @@ import operator
 name_repeat = max(result.items(), key=operator.itemgetter(1))[0]
 print(f"Самое частое имя среди учеников в классе 2: {name_repeat}")
 
-#SECOND CLASS
+
 names_class_third = []
 for student in class_third:
     for key, value in student.items():
@@ -129,8 +129,10 @@ print(f"Самое частое имя среди учеников в класс
 school = [
     {'class': '2a', 'students': [{'first_name': 'Маша'}, {'first_name': 'Оля'}]},
     {'class': '2б', 'students': [{'first_name': 'Олег'}, {'first_name': 'Миша'}]},
-    {'class': '2б', 'students': [{'first_name': 'Даша'}, {'first_name': 'Олег'}, {'first_name': 'Маша'}]},
+    {'class': '2в', 'students': [{'first_name': 'Даша'}, {'first_name': 'Олег'}, {'first_name': 'Маша'}]},
 ]
+
+
 is_male = {
     'Олег': True,
     'Маша': False,
@@ -138,7 +140,40 @@ is_male = {
     'Миша': True,
     'Даша': False,
 }
-# ???
+
+
+def get_students_names(students: list[dict[str,str]]) -> list[str]:
+   return [student['first_name'] for student in students]
+
+
+
+def count_boys_girls(group: list[str]) -> tuple[int, int]:
+    count_boys = 0
+    count_girls = 0
+    for name in group:
+        if is_male[name]:
+            count_boys +=1
+        else:
+            count_girls +=1
+    return count_boys,count_girls
+
+
+def get_gender_in_school(school) -> None:
+    for group in school:
+        students_names = get_students_names(group['students'])
+        boys,girls = count_boys_girls(students_names)
+        print(f'Класс {group["class"]} мальчики: {boys}, девочки: {girls}')
+
+
+
+get_gender_in_school(school)
+
+# Класс 2б: девочки 0, мальчики 2
+
+
+assert count_boys_girls(['Маша','Оля', 'Олег']) == (1,2)
+assert count_boys_girls([]) == (0,0)
+assert get_students_names([{'first_name': 'Маша'}, {'first_name': 'Оля'}]) == ['Маша','Оля']
 
 
 # Задание 5
@@ -157,5 +192,49 @@ is_male = {
     'Олег': True,
     'Миша': True,
 }
-# ???
+
+def get_students_names(students: list[dict[str,str]]) -> list[str]:
+   return [student['first_name'] for student in students]
+
+
+
+def count_boys_girls(group: list[str]) -> tuple[int, int]:
+    count_boys = 0
+    count_girls = 0
+    for name in group:
+        if is_male[name]:
+            count_boys +=1
+        else:
+            count_girls +=1
+    return count_boys,count_girls
+
+
+def get_gender_in_school(school):
+    list = []
+    for group in school:
+        students_names = get_students_names(group['students'])
+        boys,girls = count_boys_girls(students_names)
+        gender_in_class = {"class" : group["class"], "boys": boys, "girls": girls}
+        list.append(gender_in_class)
+    return list
+
+groups = get_gender_in_school(school)
+
+def compare_boys_girls(groups: dict):
+    if groups[0]["boys"] > groups[1]["boys"]:
+        print(f"Больше мальчиков в классе {groups[0]['class']}")
+    elif groups[0]["boys"] < groups[1]["boys"]:
+        print(f"Больше мальчиков в классе {groups[1]['class']}")
+    if groups[0]["girls"] > groups[1]["girls"]:
+        print(f"Больше девочек в классе {groups[0]['class']}")
+    elif groups[0]["girls"] < groups[1]["girls"]:
+        print(f"Больше девочек в классе {groups[1]['class']}")
+
+compare_boys_girls(groups)
+
+
+
+
+
+
 
