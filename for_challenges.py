@@ -14,7 +14,9 @@ for name in names:
 
 names = ['Оля', 'Петя', 'Вася', 'Маша']
 for name in names:
-    print(f"{name} : {len(name)}")
+    print('{name} {length}'.format(
+        name=name,
+        length=len(name))),
 
 
 # Задание 3
@@ -27,12 +29,9 @@ is_male = {
     'Маша': False,
 }
 names = ['Оля', 'Петя', 'Вася', 'Маша']
-for name,gender in is_male.items():
-    if gender:
-        gender = "мужской"
-    else:
-        gender = "женский"
-    print(f"{name} - пол {gender}")
+for name in is_male:
+    gender_name = 'мужской' if is_male[name] else 'женский'
+    print(f"{name} - пол {gender_name}")
 
 # Задание 4
 # Даны группу учеников. Нужно вывести количество групп и для каждой группы – количество учеников в ней
@@ -46,10 +45,10 @@ groups = [
     ['Вася', 'Маша', 'Саша', 'Женя'],
     ['Оля', 'Петя', 'Гриша'],
 ]
-i= 1
-for group in groups:
+
+for i, group in enumerate(groups, start=1):
     print(f"Группа {i}: {len(group)} ученика" )
-    i += 1
+
 
 
 # Задание 5
@@ -66,6 +65,6 @@ groups = [
 i= 1
 for group in groups:
     for name in group:
-        list_of_names = ','.join(str(e) for e in group)
-    print(f"Группа {i}: {list_of_names} " )
+       names = ','.join(str(e) for e in group)
+    print(f"Группа {i}: {names} " )
     i += 1

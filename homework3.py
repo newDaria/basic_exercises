@@ -23,18 +23,18 @@ with open('referal2.txt',"w", encoding= 'utf-8') as f:
 
 #CSV
 import csv
-list_of_dict =  [
+persons =  [
         {'name': 'Маша', 'age': 25, 'job': 'Scientist'},
         {'name': 'Вася', 'age': 8, 'job': 'Programmer'},
         {'name': 'Эдуард', 'age': 48, 'job': 'Big boss'},
     ]
-keys = list_of_dict[0].keys()
+keys = persons[0].keys()
 
 
 with open ("customer.csv","w", newline= "") as file:
         dict_writer = csv.DictWriter(file,keys)
         dict_writer.writeheader()
-        dict_writer.writerows(list_of_dict)
+        dict_writer.writerows(persons)
 
 
 

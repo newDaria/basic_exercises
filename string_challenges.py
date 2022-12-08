@@ -13,7 +13,7 @@ def countvowels(string):
     num_vowels=0
     for char in string:
         if char in "аеоуэиый":
-           num_vowels = num_vowels+1
+           num_vowels +=1
     return num_vowels
 print(countvowels(word.lower()))
 
@@ -27,8 +27,8 @@ print(len(sentence.split()))
 sentence = 'Мы приехали в гости'
 sentence_split = sentence.split()
 new_str_first_letters = ""
-for i in sentence_split:
-    new_str_first_letters += i[0]
+for word in sentence_split:
+    new_str_first_letters += word[0]
 print(new_str_first_letters)
 
 
